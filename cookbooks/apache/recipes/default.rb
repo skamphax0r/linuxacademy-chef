@@ -40,7 +40,16 @@ template template_location do
 	)
 	notifies :restart, "service[httpd]"
 	end
-		
+	
+	template "/content/sites/#{sitename}/index.html" do
+	source "index.html.erb"
+	mode "0644"
+	variables(
+		:site_title => data["site_title"], 
+		:comingsoon => "Coming Soon!", 
+		:author_name => node["author"]["name"]
+		)
+		end
 end
 
 execute "rm /etc/httpd/conf.d/welcome.conf" do
@@ -62,5 +71,8 @@ end
 	action [:enable, :start]
 end
 
+
+
+		
 # include_recipe "php::default"
 
