@@ -48,8 +48,8 @@ default['chef_client']['log_dir']     = '/var/log/chef'
 
 # Configuration for chef-client::cron recipe.
 default['chef_client']['cron'] = {
-  'minute' => '0',
-  'hour' => '0,4,8,12,16,20',
+  'minute' => '*/30',
+  'hour' => '*',
   'weekday' => '*',
   'path' => nil,
   'environment_variables' => nil,
